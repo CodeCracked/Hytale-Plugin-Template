@@ -5,6 +5,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR"
 
+PATCHLINE="release"
 DOWNLOADER_EXE="hytale-downloader/hytale-downloader-linux-amd64"
 DOWNLOADER_URL="https://downloader.hytale.com/hytale-downloader.zip"
 TMP_DIR="tmp"
@@ -32,6 +33,7 @@ if [[ ! -f "$DOWNLOADER_EXE" ]]; then
 
   curl -L --fail -o "$DOWNLOADER_ZIP" "$DOWNLOADER_URL"
 
+  echo ""
   echo "Extracting Hytale Downloader..."
   mkdir -p "hytale-downloader"
 
@@ -47,9 +49,10 @@ chmod +x "$DOWNLOADER_EXE" 2>/dev/null || true
 
 # 2) Download Hytale
 echo "Downloading Hytale..."
-"$DOWNLOADER_EXE" -download-path "$HYTALE_ZIP" -credentials-path "$CREDENTIALS"
+"$DOWNLOADER_EXE" -download-path "$HYTALE_ZIP" -credentials-path "$CREDENTIALS" -patchline "$PATCHLINE"
 
 # 3) Extract the contents of libs/hytale.zip to libs
+echo ""
 echo "Extracting Hytale..."
 unzip -o "$HYTALE_ZIP" -d "libs" >/dev/null
 

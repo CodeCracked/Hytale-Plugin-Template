@@ -5,6 +5,7 @@ rem --- Run from the folder this .bat is in ---
 pushd "%~dp0"
 
 rem --- Paths / URLs (all relative to this .bat) ---
+set "PATCHLINE=release"
 set "DOWNLOADER_EXE=hytale-downloader\hytale-downloader-windows-amd64.exe"
 set "DOWNLOADER_ZIP=tmp\hytale-downloader.zip"
 set "DOWNLOADER_URL=https://downloader.hytale.com/hytale-downloader.zip"
@@ -58,7 +59,7 @@ rem 2) Download Hytale
 rem ============================================================
 echo Downloading Hytale...
 
-"%DOWNLOADER_EXE%" -download-path "%HYTALE_ZIP%" -credentials-path "%CREDENTIALS%" || (
+"%DOWNLOADER_EXE%" -download-path "%HYTALE_ZIP%" -credentials-path "%CREDENTIALS%" -patchline "%PATCHLINE%" || (
   echo ERROR: Hytale download failed.
   goto :fail
 )
