@@ -1,0 +1,6 @@
+{
+  "Group": "com.example",
+  "Name": "ExamplePlugin",
+  "Version": "1.0-SNAPSHOT",
+  "Main": "com.example.plugin.ExamplePlugin"
+}
